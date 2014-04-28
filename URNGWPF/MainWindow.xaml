@@ -25,6 +25,7 @@
             <Button Name="btnPermutation" Margin="10 0 0 0" Click="btnPermutation_Click">Permutation</Button>
             <Button Margin="10 0 0 0" Name="btnLSFR" Click="btnLSFR_Click">LSFR</Button>
             <Button Margin="10 0 0 0" Name="btnPRBS31" Click="btnPRBS31_Click">PRBS31</Button>
+            <Button Margin="10 0 0 0" Name="btnMT" Click="btnMT_Click">MT</Button>
             <Button Name="btnClear" Margin="10 0 0 0" Click="btnClear_Click">Clear metrics</Button>
             <CheckBox Name="chkToFile" IsChecked="False"  Margin="10 0 0 0" VerticalAlignment="Center"></CheckBox>
             <Label>Save to file</Label>

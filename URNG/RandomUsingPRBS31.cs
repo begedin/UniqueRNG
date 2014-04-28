@@ -12,7 +12,7 @@ namespace URNG
     /// 
     /// This method is relatively slow.
     /// </summary>
-    public class RandomUsingPRBS31
+    public class RandomUsingPRBS31 : RandomAbstract
     {
         private uint seed;
         private uint state;
@@ -31,8 +31,9 @@ namespace URNG
             state = ((state << 1) | feedback) & 0xffffffff;
             return state;
         }
-
-        public uint Next()
+        
+        // generates a random number on [0,0xffffffff]-interval
+        protected override uint generateRandomInt32()
         {
             for (int i = 0; i < 31; ++i)
             {
@@ -43,18 +44,6 @@ namespace URNG
                 }
             }
             return state;
-        }
-
-        public List<uint> Sequence(int size)
-        {
-            var numbers = new List<uint>();
-
-            for (int i = 0; i < size; i++)
-            {
-                numbers.Add(Next());
-            }
-
-            return numbers;
         }
     }
 }

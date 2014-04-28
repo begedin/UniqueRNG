@@ -9,7 +9,7 @@ namespace URNG
     /// Algorithm for generating unique random numbers using a Linear Feedback Shift Register
     /// http://en.wikipedia.org/wiki/Linear_feedback_shift_register
     /// </summary>
-    public class RandomUsingLFSR
+    public class RandomUsingLFSR : RandomAbstract
     {
         const uint POLYMASK_32 = 0xB4BCD35C;
         const uint POLYMASK_31 = 0x7A5BC2E3;
@@ -38,22 +38,12 @@ namespace URNG
             return lfsr;
         }
 
-        public uint Next()
+        // generates a random number on [0,0xffffffff]-interval
+        protected override uint generateRandomInt32()
         {
+            // compute and return next generator value
             lfsr32 = shiftLFSR(lfsr32, POLYMASK_32);
             return (shiftLFSR(lfsr32, POLYMASK_32) ^ shiftLFSR(lfsr31, POLYMASK_31) & 0xffffff);
-        }
-
-        public List<uint> Sequence(int size)
-        {
-            var numbers = new List<uint>();
-
-            for (int i = 0; i < size; i++)
-            {
-                numbers.Add(Next());
-            }
-
-            return numbers;
         }
     }
 }

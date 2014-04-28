@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomAbstract.cs" />
     <Compile Include="RandomUsingLFSR.cs" />
+    <Compile Include="RandomUsingMersenneTwister.cs" />
     <Compile Include="RandomUsingPRBS31.cs" />
     <Compile Include="RandomUsingPrimeCongruence.cs" />
   </ItemGroup>
