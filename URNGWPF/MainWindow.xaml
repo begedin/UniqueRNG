@@ -11,7 +11,6 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         
         <Label  Grid.Column="0" Grid.Row="0">Result:</Label>
@@ -28,13 +27,8 @@
             <CheckBox Name="ckbMax" VerticalAlignment="Center" Margin="10 0 0 0" IsChecked="False">Max</CheckBox>
             <TextBox Width="50" VerticalAlignment="Center" Name="txtMax"  Margin="5 0 0 0"></TextBox>
             <CheckBox Name="chkToFile" IsChecked="False"  Margin="10 0 0 0" VerticalAlignment="Center">Save to file</CheckBox>
-        </StackPanel>
-        <StackPanel Grid.Row ="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
-            <Button Name="btnPermutation" Margin="10 0 0 0" Click="btnPermutation_Click">Permutation</Button>
-            <Button Margin="10 0 0 0" Name="btnLSFR" Click="btnLSFR_Click">LSFR</Button>
-            <Button Margin="10 0 0 0" Name="btnPRBS31" Click="btnPRBS31_Click">PRBS31</Button>
-            <Button Margin="10 0 0 0" Name="btnMT" Click="btnMT_Click">MT</Button>
-            <Button Name="btnClear" Margin="10 0 0 0" Click="btnClear_Click">Clear metrics</Button>
+            <Button Name="btnPermutation" Margin="10 0 0 0" Click="btnPermutation_Click">Generate sequence</Button>
+            <Button Name="btnClear" Margin="10 0 0 0" Click="btnClear_Click">Clear</Button>
         </StackPanel>
     </Grid>
 </Window>

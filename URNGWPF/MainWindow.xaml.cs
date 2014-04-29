@@ -30,15 +30,12 @@ namespace URNGWPF
 
         private void btnPermutation_Click(object sender, RoutedEventArgs e)
         {
-            var amount = Int32.Parse(txtAmount.Text);
-
             Stopwatch sw = new Stopwatch();
             sw.Start();
             
             int max = 0, min = 0;
 
-            RandomUsingPrimeCongruence randomPermutation = new RandomUsingPrimeCongruence();
-            
+          
             if (ckbMax.IsChecked.Value)
             {
                 max = Int32.Parse(txtMax.Text);
@@ -49,21 +46,22 @@ namespace URNGWPF
                 min = Int32.Parse(txtMin.Text);
             }
 
+            var amount = UInt32.Parse(txtAmount.Text);
             List<long> numbers = new List<long>();
 
             if (ckbMax.IsChecked.Value && ckbMin.IsChecked.Value)
             {
-                foreach (var number in randomPermutation.Sequence(amount, min, max)) numbers.Add(number);
+                foreach (var number in UniqueSequenceGenerator.Sequence(amount, min, max)) numbers.Add(number);
             }
             else 
             {
                 if (ckbMax.IsChecked.Value)
                 {
-                    foreach (var number in randomPermutation.Sequence(amount, max)) numbers.Add(number);
+                    foreach (var number in UniqueSequenceGenerator.Sequence(amount, (uint)max)) numbers.Add(number);
                 }
                 else
                 {
-                    foreach (var number in randomPermutation.Sequence(amount)) numbers.Add(number);
+                    foreach (var number in UniqueSequenceGenerator.Sequence(amount)) numbers.Add(number);
                 }
             }
 
@@ -109,167 +107,6 @@ namespace URNGWPF
                 }
             }
 
-        }
-
-        private void btnLSFR_Click(object sender, RoutedEventArgs e)
-        {
-
-            var amount = Int32.Parse(txtAmount.Text);
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            RandomUsingLFSR randomLSFR = new RandomUsingLFSR();
-            List<uint> numbers = randomLSFR.Sequence(amount);
-
-            sw.Stop();
-
-            listMetrics.Items.Add("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-
-            listResult.Items.Clear();
-
-            if (numbers.Count != numbers.Distinct().Count())
-            {
-                listMetrics.Items.Add("List contains DUPLICATES!");
-            }
-            else
-            {
-                listMetrics.Items.Add("List is valid");
-            }
-
-            //if (chkToFile.IsChecked.Value)
-            //{
-            //    StringBuilder sb = new StringBuilder();
-
-            //    sb.AppendLine("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-            //    sb.AppendLine();
-
-            //    foreach (var number in numbers)
-            //    {
-            //        sb.AppendLine(number.ToString());
-            //    }
-
-            //    SaveFileDialog dialog = new SaveFileDialog();
-            //    dialog.FileName = "result.txt";
-            //    if (dialog.ShowDialog() == true)
-            //    {
-            //        File.WriteAllText(dialog.FileName, sb.ToString());
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (var number in numbers)
-            //    {
-            //        listResult.Items.Add(number);
-            //    }
-            //}
-        }
-
-        private void btnPRBS31_Click(object sender, RoutedEventArgs e)
-        {
-            var amount = Int32.Parse(txtAmount.Text);
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            RandomUsingPRBS31 randomPRBS31 = new RandomUsingPRBS31();
-            List<uint> numbers = randomPRBS31.Sequence(amount);
-
-            sw.Stop();
-
-            listMetrics.Items.Add("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-
-            listResult.Items.Clear();
-
-            if (numbers.Count != numbers.Distinct().Count())
-            {
-                listMetrics.Items.Add("List contains DUPLICATES!");
-            }
-            else
-            {
-                listMetrics.Items.Add("List is valid");
-            }
-
-            //if (chkToFile.IsChecked.Value)
-            //{
-            //    StringBuilder sb = new StringBuilder();
-
-            //    sb.AppendLine("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-            //    sb.AppendLine();
-
-            //    foreach (var number in numbers)
-            //    {
-            //        sb.AppendLine(number.ToString());
-            //    }
-
-            //    SaveFileDialog dialog = new SaveFileDialog();
-            //    dialog.FileName = "result.txt";
-            //    if (dialog.ShowDialog() == true)
-            //    {
-            //        File.WriteAllText(dialog.FileName, sb.ToString());
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (var number in numbers)
-            //    {
-            //        listResult.Items.Add(number);
-            //    }
-            //}
-
-        }
-
-        private void btnMT_Click(object sender, RoutedEventArgs e)
-        {
-            var amount = Int32.Parse(txtAmount.Text);
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            RandomUsingMersenneTwister randomMT = new RandomUsingMersenneTwister();
-            List<uint> numbers = randomMT.Sequence(amount);
-
-            sw.Stop();
-
-            listMetrics.Items.Add("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-
-            listResult.Items.Clear();
-
-            if (numbers.Count != numbers.Distinct().Count())
-            {
-                listMetrics.Items.Add("List contains DUPLICATES!");
-            }
-            else
-            {
-                listMetrics.Items.Add("List is valid");
-            }
-
-            //if (chkToFile.IsChecked.Value)
-            //{
-            //    StringBuilder sb = new StringBuilder();
-
-            //    sb.AppendLine("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-            //    sb.AppendLine();
-
-            //    foreach (var number in numbers)
-            //    {
-            //        sb.AppendLine(number.ToString());
-            //    }
-
-            //    SaveFileDialog dialog = new SaveFileDialog();
-            //    dialog.FileName = "result.txt";
-            //    if (dialog.ShowDialog() == true)
-            //    {
-            //        File.WriteAllText(dialog.FileName, sb.ToString());
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (var number in numbers)
-            //    {
-            //        listResult.Items.Add(number);
-            //    }
-            //}
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
