@@ -5,7 +5,7 @@ using System.Text;
 
 namespace URNG
 {
-    public abstract class RandomAbstract
+    public abstract class RandomBase
     {
 
         protected abstract uint generateRandomInt32();

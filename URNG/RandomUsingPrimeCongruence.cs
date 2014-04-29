@@ -10,7 +10,7 @@ namespace URNG
     /// A single instance returns pseudo random unique numbers up to a maximum sequence length of 4294967291.
     /// Once the maximum length is reached, the exact same sequence repeats.
     /// </summary>
-    public class RandomUsingPrimeCongruence : RandomAbstract
+    public class RandomUsingPrimeCongruence : RandomBase
     {
         // used to generate initial value - seed
         private Random random;

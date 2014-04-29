@@ -12,7 +12,7 @@ namespace URNG
     /// 
     /// This method is relatively slow.
     /// </summary>
-    public class RandomUsingPRBS31 : RandomAbstract
+    public class RandomUsingPRBS31 : RandomBase
     {
         private uint seed;
         private uint state;

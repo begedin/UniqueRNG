@@ -9,7 +9,7 @@ namespace URNG
     /// Algorithm for generating unique random numbers using a Linear Feedback Shift Register
     /// http://en.wikipedia.org/wiki/Linear_feedback_shift_register
     /// </summary>
-    public class RandomUsingLFSR : RandomAbstract
+    public class RandomUsingLFSR : RandomBase
     {
         const uint POLYMASK_32 = 0xB4BCD35C;
         const uint POLYMASK_31 = 0x7A5BC2E3;
