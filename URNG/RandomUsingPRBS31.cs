@@ -6,11 +6,9 @@ using System.Text;
 namespace URNG
 {
     /// <summary>
-    /// A slightly simpler version of the LSFR algorithm.
+    /// A slightly simpler version of the LSFR algorithm called the PseudoRadnom Bit Sequence.
     /// 
-    /// This would generate a randomly-seeming sequence of integers that is (2^31-1)/31 long.
-    /// 
-    /// This method is relatively slow.
+    /// This method is much slower than the regular LFSR implementation and is not recommended.
     /// </summary>
     public class RandomUsingPRBS31 : RandomBase
     {

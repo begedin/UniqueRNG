@@ -6,7 +6,11 @@ using System.Text;
 namespace URNG
 {
     /// <summary>
+    /// Generates random numbers using the Mersenne Twister algorithm.
     /// 
+    /// NOTE: This one currently doesn't work properly and returns duplicates for longer sequences. 
+    /// Since a proper MT algorithm should have an extremely long period, this means there's 
+    /// probably an error in this implementation I haven't managed to track down yet.
     /// </summary>
     public class RandomUsingMersenneTwister : RandomBase
     {

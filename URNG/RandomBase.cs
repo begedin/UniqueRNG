@@ -11,15 +11,6 @@ namespace URNG
         protected abstract uint generateRandomInt32();
 
         /// <summary>
-        /// Generates a random positive integer
-        /// </summary>
-        /// <returns>Random and unique integer value</returns>
-        protected int generateRandomInt31()
-        {
-            return (int)(generateRandomInt32() >> 1);
-        }
-
-        /// <summary>
         /// Generates a random number on [0,1]-real-interval
         /// </summary>
         /// <returns>Random number on [0,1]-real-interval (includes 0, includes 1)</returns>
@@ -60,27 +51,30 @@ namespace URNG
         }
 
         /// <summary>
-        /// Returns a random integer greater than or equal to zero and
-        /// less than or equal to <c>MaxRandomInt</c>. 
+        /// Returns a random unsigned integer and
         /// </summary>
         /// <returns>The next random integer.</returns>
-        public int Next()
+        public uint Next()
         {
-            return generateRandomInt31();
+            return generateRandomInt32();
         }
 
         /// <summary>
         /// Returns a positive random integer less than the specified maximum.
+        /// 
+        /// WARNING: Base method uses conversion from a real number, so it doesn't go through a full cycle before repeats
         /// </summary>
         /// <param name="maxValue">The maximum value. Must be greater than zero.</param>
         /// <returns>A positive random integer less than or equal to <c>maxValue</c>.</returns>
-        public int Next(int maxValue)
+        public virtual int Next(int maxValue)
         {
             return Next(0, maxValue);
         }
 
         /// <summary>
         /// Returns a random integer within the specified range.
+        /// 
+        /// WARNING: Base method uses conversion from a real number, so it doesn't go through a full cycle before repeats
         /// </summary>
         /// <param name="minValue">The lower bound.</param>
         /// <param name="maxValue">The upper bound.</param>
@@ -212,6 +206,7 @@ namespace URNG
             }
 
             return numbers;
+
         }
     }
 }

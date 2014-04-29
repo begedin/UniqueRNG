@@ -34,9 +34,38 @@ namespace URNGWPF
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
+            
+            int max = 0, min = 0;
 
             RandomUsingPrimeCongruence randomPermutation = new RandomUsingPrimeCongruence();
-            var numbers = randomPermutation.Sequence(amount);
+            
+            if (ckbMax.IsChecked.Value)
+            {
+                max = Int32.Parse(txtMax.Text);
+            }
+
+            if (ckbMin.IsChecked.Value)
+            {
+                min = Int32.Parse(txtMin.Text);
+            }
+
+            List<long> numbers = new List<long>();
+
+            if (ckbMax.IsChecked.Value && ckbMin.IsChecked.Value)
+            {
+                foreach (var number in randomPermutation.Sequence(amount, min, max)) numbers.Add(number);
+            }
+            else 
+            {
+                if (ckbMax.IsChecked.Value)
+                {
+                    foreach (var number in randomPermutation.Sequence(amount, max)) numbers.Add(number);
+                }
+                else
+                {
+                    foreach (var number in randomPermutation.Sequence(amount)) numbers.Add(number);
+                }
+            }
 
             sw.Stop();
 
@@ -53,32 +82,32 @@ namespace URNGWPF
                 listMetrics.Items.Add("List is valid");
             }
 
-            //if (chkToFile.IsChecked.Value)
-            //{
-            //    StringBuilder sb = new StringBuilder();
+            if (chkToFile.IsChecked.Value)
+            {
+                StringBuilder sb = new StringBuilder();
 
-            //    sb.AppendLine("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
-            //    sb.AppendLine();
+                sb.AppendLine("Execution time for " + amount.ToString() + " items: " + sw.ElapsedMilliseconds.ToString() + " milliseconds");
+                sb.AppendLine();
 
-            //    foreach (var number in numbers)
-            //    {
-            //        sb.AppendLine(number.ToString());
-            //    }
+                foreach (var number in numbers)
+                {
+                    sb.AppendLine(number.ToString());
+                }
 
-            //    SaveFileDialog dialog = new SaveFileDialog();
-            //    dialog.FileName = "result.txt";
-            //    if (dialog.ShowDialog() == true)
-            //    {
-            //        File.WriteAllText(dialog.FileName, sb.ToString());
-            //    }
-            //}
-            //else 
-            //{
-            //    foreach (var number in numbers)
-            //    {
-            //        listResult.Items.Add(number);
-            //    }
-            //}
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.FileName = "result.txt";
+                if (dialog.ShowDialog() == true)
+                {
+                    File.WriteAllText(dialog.FileName, sb.ToString());
+                }
+            }
+            else
+            {
+                foreach (var number in numbers)
+                {
+                    listResult.Items.Add(number);
+                }
+            }
 
         }
 
@@ -190,11 +219,6 @@ namespace URNGWPF
 
         }
 
-        private void btnClear_Click(object sender, RoutedEventArgs e)
-        {
-            listMetrics.Items.Clear();
-        }
-
         private void btnMT_Click(object sender, RoutedEventArgs e)
         {
             var amount = Int32.Parse(txtAmount.Text);
@@ -246,6 +270,11 @@ namespace URNGWPF
             //        listResult.Items.Add(number);
             //    }
             //}
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            listMetrics.Items.Clear();
         }
     }
 }
